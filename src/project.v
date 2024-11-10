@@ -21,8 +21,10 @@ module tt_um_urish_giant_ringosc (
   wire [CHAIN_LENGTH-1:0] inv_in;
   wire [CHAIN_LENGTH-1:0] inv_out;
 
-  assign inv_in[0] = ui_in[0];
+  assign inv_in[0] = internal_loopback ? inv_out[CHAIN_LENGTH-1] : ui_in[0];
   assign inv_in[CHAIN_LENGTH-1:1] = inv_out[CHAIN_LENGTH-2:0];
+
+  wire internal_loopback = ui_in[1];
 
   assign uo_out[0] = inv_out[0];
   assign uo_out[1] = inv_out[2];
@@ -47,6 +49,6 @@ module tt_um_urish_giant_ringosc (
       .out(inv_out)
   );
 
-  wire _unused = &{ena, clk, rst_n};
+  wire _unused = &{ena, clk, rst_n, uio_in, ui_in[7:2]};
 
 endmodule

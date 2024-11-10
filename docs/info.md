@@ -28,11 +28,12 @@ A giant, configurable ring oscillator with up to 3853 stages. To enable the ring
 | uio[4] | 3001         |
 | uio[5] | 3853         |
 
+There is also an option to connect the ring oscillator internally, by driving `internal_loopback` high. This will create a ring oscillator with 3853 stages.
+
 ## How to test
 
-Connect one of the output pins (e.g. `uio_out[5]`) to `ring_in`, and measure the output frequency.
+Connect one of the output pins (e.g. `uio_out[5]`) to `ring_in` or set `internal_loopback` to 1, and measure the output frequency.
 
 ## External hardware
 
 A scope / logic analyzer to measure the output frequency and the delay between different points in the inverter chain.
-F
